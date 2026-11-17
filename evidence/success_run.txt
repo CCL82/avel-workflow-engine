@@ -1,0 +1,59 @@
+$ python main.py reset REQ-1042
+No run found for REQ-1042; nothing to reset
+(exit code 0)
+
+$ python main.py run --fail-times 1
+[START]     Workflow REQ-1042
+[RUNNING]   Check availability
+[FAILED]    Temporary API timeout
+[RETRY]     Attempt 2
+[SUCCESS]   Aircraft availability received
+[RUNNING]   Prepare quote
+[SUCCESS]   Draft prepared
+[PAUSED]    Waiting for human approval
+
+--- Draft quote Q-7f247678 ---
+Client:   Jordan Reyes <jordan.reyes@example.com>
+Trip:     KVNY -> KTEB on 2026-12-05, 4 passengers
+Aircraft: N303AV (Challenger 350)
+  Charter: 5.0 h x $6,200.00/h      $   31,000.00
+  Federal excise tax (7.5%)         $    2,325.00
+  Handling fee                      $      500.00
+  Total                             $   33,825.00
+
+Nothing has been sent. To continue:
+  python main.py approve REQ-1042
+  python main.py reject REQ-1042
+(exit code 0)
+
+$ python main.py approve REQ-1042
+[APPROVED]  Human approves draft
+[RUNNING]   Send quote (mock)
+            (mock) Quote Q-7f247678 for $33,825.00 "sent" to Jordan Reyes <jordan.reyes@example.com>
+[SUCCESS]   Mock send completed
+[COMPLETE]  Workflow finished
+(exit code 0)
+
+$ python main.py status REQ-1042
+Workflow REQ-1042: COMPLETE
+Steps:
+  Check availability  SUCCESS
+  Prepare quote       SUCCESS
+  Send quote (mock)   SUCCESS
+Approval: APPROVED (quote Q-7f247678)
+Sent: MOCK-MSG-Q-7f247678 (idempotency key REQ-1042-Q-7f247678)
+History:
+  2026-11-17T03:31:51+00:00  [START]     Workflow REQ-1042
+  2026-11-17T03:31:51+00:00  [RUNNING]   Check availability
+  2026-11-17T03:31:51+00:00  [FAILED]    Temporary API timeout
+  2026-11-17T03:31:51+00:00  [RETRY]     Attempt 2
+  2026-11-17T03:31:51+00:00  [SUCCESS]   Aircraft availability received
+  2026-11-17T03:31:51+00:00  [RUNNING]   Prepare quote
+  2026-11-17T03:31:51+00:00  [SUCCESS]   Draft prepared
+  2026-11-17T03:31:51+00:00  [PAUSED]    Waiting for human approval
+  2026-11-17T03:31:51+00:00  [APPROVED]  Human approves draft
+  2026-11-17T03:31:51+00:00  [RUNNING]   Send quote (mock)
+  2026-11-17T03:31:51+00:00  [SUCCESS]   Mock send completed
+  2026-11-17T03:31:51+00:00  [COMPLETE]  Workflow finished
+(exit code 0)
+

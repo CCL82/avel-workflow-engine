@@ -1,0 +1,32 @@
+$ python main.py reset REQ-1042
+Deleted saved run for REQ-1042
+(exit code 0)
+
+$ python main.py run --fail-times 3
+[START]     Workflow REQ-1042
+[RUNNING]   Check availability
+[FAILED]    Temporary API timeout
+[RETRY]     Attempt 2
+[FAILED]    Temporary API timeout
+[RETRY]     Attempt 3
+[FAILED]    Temporary API timeout
+[ABORTED]   Check availability failed after 3 attempt(s). Remaining steps skipped
+(exit code 0)
+
+$ python main.py status REQ-1042
+Workflow REQ-1042: ABORTED
+Steps:
+  Check availability  FAILED
+  Prepare quote       SKIPPED
+  Send quote (mock)   SKIPPED
+History:
+  2026-11-17T03:31:51+00:00  [START]     Workflow REQ-1042
+  2026-11-17T03:31:51+00:00  [RUNNING]   Check availability
+  2026-11-17T03:31:51+00:00  [FAILED]    Temporary API timeout
+  2026-11-17T03:31:51+00:00  [RETRY]     Attempt 2
+  2026-11-17T03:31:51+00:00  [FAILED]    Temporary API timeout
+  2026-11-17T03:31:52+00:00  [RETRY]     Attempt 3
+  2026-11-17T03:31:52+00:00  [FAILED]    Temporary API timeout
+  2026-11-17T03:31:52+00:00  [ABORTED]   Check availability failed after 3 attempt(s). Remaining steps skipped
+(exit code 0)
+

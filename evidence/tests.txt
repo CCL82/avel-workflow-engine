@@ -1,0 +1,21 @@
+$ python -m unittest -v
+test_approve_or_reject_without_a_paused_run_is_an_error (tests.test_engine.EngineTests.test_approve_or_reject_without_a_paused_run_is_an_error) ... ok
+test_approving_a_complete_run_does_not_send_again (tests.test_engine.EngineTests.test_approving_a_complete_run_does_not_send_again) ... ok
+test_attempt_numbering_and_backoff (tests.test_engine.EngineTests.test_attempt_numbering_and_backoff) ... ok
+test_happy_path_with_one_transient_failure (tests.test_engine.EngineTests.test_happy_path_with_one_transient_failure) ... ok
+test_idempotency_key_blocks_a_second_send (tests.test_engine.EngineTests.test_idempotency_key_blocks_a_second_send) ... ok
+test_interactive_y_approves_and_sends_once (tests.test_engine.EngineTests.test_interactive_y_approves_and_sends_once) ... ok
+test_never_exceeds_max_attempts_or_retries_after_last_failure (tests.test_engine.EngineTests.test_never_exceeds_max_attempts_or_retries_after_last_failure) ... ok
+test_non_transient_error_is_not_retried (tests.test_engine.EngineTests.test_non_transient_error_is_not_retried) ... ok
+test_quote_id_mismatch_aborts_without_sending (tests.test_engine.EngineTests.test_quote_id_mismatch_aborts_without_sending) ... ok
+test_reject_ends_rejected_and_never_sends (tests.test_engine.EngineTests.test_reject_ends_rejected_and_never_sends) ... ok
+test_send_does_not_run_while_paused (tests.test_engine.EngineTests.test_send_does_not_run_while_paused) ... ok
+test_three_failures_abort_and_never_send (tests.test_engine.EngineTests.test_three_failures_abort_and_never_send) ... ok
+test_unclear_interactive_input_stays_paused (tests.test_engine.EngineTests.test_unclear_interactive_input_stays_paused) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.033s
+
+OK
+(exit code 0)
+
